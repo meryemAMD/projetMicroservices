@@ -1,0 +1,8 @@
+# zuul:
+#  routes:
+#    first:
+#      path: /login/**
+#      url: http://localhost:9001/login
+#    second:
+#      path: /register/**
+#      url: http://localhost:9001/register
