@@ -52,7 +52,6 @@ public class OffreService implements OffreServiceInt {
 	 */
 	@Override
 	public void deleteOffre(Offre offre, String idContrat) {
-		System.out.println(idContrat);
 		//ContratService contratService = new ContratService();
 		Contrat contrat =  contratRepository.findByIdContrat(idContrat);
 		Collection<Offre> offres = contrat.getOffres();
@@ -78,11 +77,10 @@ public class OffreService implements OffreServiceInt {
 	@Override
 	public void saveOffre(Offre offre, String idContrat) {
 		// TODO Auto-generated method stub
-		ContratServiceInt contratService = new ContratService();
-		Contrat contrat =  contratService.findById(idContrat);
+		Contrat contrat =  contratRepository.findByIdContrat(idContrat);
 		contrat.getOffres().add(offre);
 		offreRepository.save(offre);
-		contratService.createContrat(contrat);
+		contratRepository.save(contrat);
 	}
 
 
