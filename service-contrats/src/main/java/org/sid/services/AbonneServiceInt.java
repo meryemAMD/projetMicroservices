@@ -10,12 +10,17 @@ public interface AbonneServiceInt {
 
 	Abonne findById(String id);
 
-	void create(Abonne abonne);
+	void createEntreprise(Abonne abonne);
+	
+	void createIndividu(Abonne abonne);
 
 	void deleteAbonne(Abonne abonne);
 
-	List<Abonne> findByBo(String idBo);
-
 	void update(Abonne abonne) throws Exception;
+
+	List<Abonne> findByBo(String idBo, String type, int pageSize, int pageNum);
+
+	void changeState(String idAbonne, boolean b);
+
 
 }

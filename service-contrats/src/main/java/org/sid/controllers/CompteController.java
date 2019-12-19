@@ -30,7 +30,7 @@ public class CompteController {
 		return compteService.findById(id);
     }
 	
-	@GetMapping(value = "/{idAbonne}")
+	@GetMapping(value = "Abonne/{idAbonne}")
 	public List<Compte> findByIdAbonne(@PathVariable String id) {
 		return compteService.findIdByAbonne(id);
     }

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.sid.dao.AbonneRepository;
 import org.sid.dao.ContratRepository;
+import org.sid.entities.Abonne;
 import org.sid.entities.Contrat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,9 @@ import org.springframework.stereotype.Service;
 public class ContratService implements ContratServiceInt{
 	@Autowired
 	private ContratRepository contratRepository;
+	
+	@Autowired
+	private AbonneRepository abonneRepository;
 
 	/* (non-Javadoc)
 	 * @see org.sid.services.ContratServiceInt#findAll()
@@ -37,7 +41,6 @@ public class ContratService implements ContratServiceInt{
 	 */
 	@Override
 	public void updateContrat(Contrat contrat) {
-		contrat.setOffres(contratRepository.findByIdContrat(contrat.getIdContrat()).getOffres());
 		contratRepository.save(contrat);
 	}
 
@@ -56,6 +59,11 @@ public class ContratService implements ContratServiceInt{
 	@Override
 	public void createContrat(Contrat contrat) {
 		contratRepository.save(contrat);
+	}
+
+	@Override
+	public Contrat findByAbonne(String idAbonne) {		
+		return contratRepository.findByIdAbonne(idAbonne);
 	}
 
 
