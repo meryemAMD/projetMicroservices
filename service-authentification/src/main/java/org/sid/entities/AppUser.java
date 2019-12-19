@@ -15,6 +15,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import javax.validation.constraints.Email;
 @Document
 @Data @AllArgsConstructor @NoArgsConstructor 
 
@@ -26,6 +28,8 @@ public class AppUser {
   //  @JsonIgnore
     private String password;
     private boolean actived;
+    @Email
+    private String email;
     @DBRef
     private Collection<AppRole> roles=new ArrayList<>();
     
@@ -35,15 +39,21 @@ public class AppUser {
 	}
 	
 	
-	
-	public AppUser(String id, String username, String password, boolean actived, Collection<AppRole> roles) {
+
+
+
+	public AppUser(String username, String password, boolean actived, @Email String email,
+			Collection<AppRole> roles) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.actived = actived;
+		this.email = email;
 		this.roles = roles;
 	}
+
+
 
 
 
@@ -82,6 +92,18 @@ public class AppUser {
 	}
 	public void setRoles(Collection<AppRole> roles) {
 		this.roles = roles;
+	}
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
     
     
