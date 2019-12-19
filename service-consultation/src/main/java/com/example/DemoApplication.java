@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 
 import com.example.repositories.AbonneRepository;
@@ -33,6 +34,7 @@ import com.exemple.entities.Offre;
 import com.exemple.entities.Operation;
 import com.exemple.entities.VirmentPermanent;
 
+@EnableDiscoveryClient
 @SpringBootApplication
 //@EnableFeignClients
 public class DemoApplication {
