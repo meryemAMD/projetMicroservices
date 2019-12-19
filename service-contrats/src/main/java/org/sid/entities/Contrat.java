@@ -22,8 +22,6 @@ public class Contrat {
     private  Date dateDebut;
     private  Date dateExpiration;
     private String idAbonne;
-    @DBRef
-    private Collection<Offre> offres;
     
 	public Contrat() {
 		super();
@@ -62,13 +60,5 @@ public class Contrat {
 		this.idAbonne = idAbonne;
 	}
 
-	public Collection<Offre> getOffres() {
-		return offres;
-	}
-
-	public void setOffres(Collection<Offre> offres) {
-		this.offres = offres;
-	}
-    
     
 }

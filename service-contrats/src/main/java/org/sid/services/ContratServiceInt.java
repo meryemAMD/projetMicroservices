@@ -16,4 +16,6 @@ public interface ContratServiceInt {
 
 	void createContrat(Contrat contrat);
 
+	Contrat findByAbonne(String idAbonne);
+
 }

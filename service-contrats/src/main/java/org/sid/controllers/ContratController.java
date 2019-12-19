@@ -32,6 +32,11 @@ public class ContratController {
 		return contratService.findById(id);
     }
 	
+	@GetMapping(value = "Abonne/{idAbonne}")
+	public Contrat findByAbonne(@PathVariable String idAbonne) {
+		return contratService.findByAbonne(idAbonne);
+    }
+	
 	@PostMapping(value = "/" , consumes = "application/json")
 	public void create (@RequestBody Contrat contrat) {
 		contratService.createContrat(contrat);

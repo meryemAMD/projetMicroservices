@@ -26,30 +26,48 @@ public class AbonneController {
 	
 	@Autowired
 	private AbonneServiceInt abonneService;
-	
-	
-	//1- FE will ask for abonne of specific idBo
-	@RequestMapping(method = RequestMethod.GET, value = "byBo/{idBo}")
-	public List<Abonne> findByBo(@PathVariable String idBo) {
-		return abonneService.findByBo(idBo);
+
+	@RequestMapping(method = RequestMethod.GET, value = "Individu/{idBo}/{pageSize}/{pageNum}")
+	public List<Abonne> findByBoIndividu(@PathVariable String idBo , @PathVariable int pageSize , @PathVariable int pageNum ) {
+		return abonneService.findByBo(idBo , "individu" , pageSize , pageNum);
     }
-	
-	//2- FE will ask for details about specific abonne
+
+	@RequestMapping(method = RequestMethod.GET, value = "Entreprise/{idBo}/{pageSize}/{pageNum}")
+	public List<Abonne> findByBoEntreprise(@PathVariable String idBo , @PathVariable int pageSize , @PathVariable int pageNum ) {
+		return abonneService.findByBo(idBo , "entreprise" , pageSize , pageNum);
+    }
+
 	@GetMapping(value = "/{id}")
 	public Abonne findById(@PathVariable String id) {
 		return abonneService.findById(id);
     }
-	
-	//FE will ask for update (only attributes not dbref here we don't implement cascade saveorupdate)
+
 	@PutMapping(value = "/" , consumes = "application/json")
 	public void update(@RequestBody Abonne abonne) throws Exception {
 		abonneService.update(abonne);
 	}
+
+	@PostMapping(value = "Individu/" , consumes = "application/json")
+	public void createIndividu(@RequestBody Abonne abonne) {
+			abonneService.createIndividu(abonne);
+	}
 	
 	//FE will ask for creating abonne (here contract must be saved before)
-	@PostMapping(value = "/" , consumes = "application/json")
-	public void create(@RequestBody Abonne abonne) {
-			abonneService.create(abonne);
+	@PostMapping(value = "Entreprise/" , consumes = "application/json")
+	public void createEntreprise(@RequestBody Abonne abonne) {
+			abonneService.createEntreprise(abonne);
+	}
+	
+	//FE will ask for creating abonne (here contract must be saved before)
+	@PostMapping(value = "activer/{idAbonne}" , consumes = "application/json")
+	public void changeStateTotrue(@PathVariable String idAbonne) {
+			abonneService.changeState(idAbonne , true);
+	}
+	
+	//FE will ask for creating abonne (here contract must be saved before)
+	@PostMapping(value = "desactiver/{idAbonne}" , consumes = "application/json")
+	public void changeStateToFalse(@PathVariable String idAbonne) {
+			abonneService.changeState(idAbonne , false);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/")
@@ -62,24 +80,4 @@ public class AbonneController {
 		abonneService.deleteAbonne(abonne);
     }
 	
-
-	/*@Autowired
-	private AbonneClient abonneClient;
-	
-    public List<Abonne> getAllAbonnes() {
-        return abonneClient.getAbonnes();
-    }
-
-    /*
-
-    public ResponseEntity<?> saveOrUpdateAbonne(@RequestBody Abonne abonne) {
-    	abonneClient.update(storeId, store);
-        return new ResponseEntity("Abonne added successfully", HttpStatus.OK);
-    }
-
-    @DeleteMapping(value = "/{id}")
-    public void deleteAbonne(@PathVariable int id) {
-    	abonneClient.deleteAbonne(id);
-    }
-*/
 }

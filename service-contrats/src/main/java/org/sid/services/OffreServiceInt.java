@@ -18,4 +18,8 @@ public interface OffreServiceInt {
 
 	void saveOffre(Offre offre, String idContrat);
 
+	List<Offre> findByAbonne(String idAbonne);
+
+	void saveOffreByIdAbonne(Offre offre, String idAbonne);
+
 }

@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import org.sid.dao.AbonneRepository;
 import org.sid.dao.ContratRepository;
 import org.sid.dao.OffreRepository;
 import org.sid.entities.Contrat;
@@ -16,6 +17,10 @@ public class OffreService implements OffreServiceInt {
 	
 	@Autowired
 	OffreRepository offreRepository;
+	
+	
+	@Autowired
+	private AbonneRepository abonneRepository;
 	
 	@Autowired 
 	ContratRepository contratRepository;
@@ -52,15 +57,7 @@ public class OffreService implements OffreServiceInt {
 	 */
 	@Override
 	public void deleteOffre(Offre offre, String idContrat) {
-		System.out.println(idContrat);
-		//ContratService contratService = new ContratService();
-		Contrat contrat =  contratRepository.findByIdContrat(idContrat);
-		Collection<Offre> offres = contrat.getOffres();
-		offres.removeIf((Offre offre1) -> offre1.getIdOffre() == offre1.getIdOffre());
-		contrat.setOffres(offres);
 		offreRepository.delete(offre);
-		//contratService.createContrat(contrat);
-		contratRepository.save(contrat);
 	}
 
 	/* (non-Javadoc)
@@ -78,11 +75,22 @@ public class OffreService implements OffreServiceInt {
 	@Override
 	public void saveOffre(Offre offre, String idContrat) {
 		// TODO Auto-generated method stub
-		ContratServiceInt contratService = new ContratService();
-		Contrat contrat =  contratService.findById(idContrat);
-		contrat.getOffres().add(offre);
+		offre.setIdContrat(idContrat);
 		offreRepository.save(offre);
-		contratService.createContrat(contrat);
+	}
+
+	@Override
+	public List<Offre> findByAbonne(String idAbonne) {
+		Contrat contrat = contratRepository.findByIdAbonne(idAbonne);
+		return offreRepository.findByIdContrat(contrat.getIdContrat());
+		
+	}
+
+	@Override
+	public void saveOffreByIdAbonne(Offre offre, String idAbonne) {
+		Contrat contrat = contratRepository.findByIdAbonne(idAbonne);
+		offre.setIdContrat(contrat.getIdContrat());
+		offreRepository.save(offre);
 	}
 
 

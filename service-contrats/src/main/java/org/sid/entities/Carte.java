@@ -13,6 +13,7 @@ public class Carte {
 	@Id
 	private String idCarte;
 	private String type;
+	private Boolean isActivate;
 	private String idCompte;
 	
 	public Carte() {

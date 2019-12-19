@@ -31,7 +31,7 @@ public class CarteController {
 		return carteService.findById(id);
     }
 	
-	@GetMapping(value = "/{idCompte}")
+	@GetMapping(value = "Compte/{idCompte}")
 	public List<Carte> findByIdCompte(@PathVariable String id) {
 		return carteService.findIdByCompte(id);
     }

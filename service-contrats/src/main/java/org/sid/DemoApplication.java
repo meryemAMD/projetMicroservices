@@ -47,7 +47,7 @@ public class DemoApplication {
 			,AgenceRepository agenceRepository , BeneficiaireRepository beneficiaireRepository , CarteRepository carteRepository,
 			OperationRepository operationRepository , UserRepository userRepository , VirmentPermanentRepository virmentPermanentRepository
 			) {
-		/*compteRepository.deleteAll();
+		compteRepository.deleteAll();
 		contratRepository.deleteAll();
 		agenceRepository.deleteAll();
 		beneficiaireRepository.deleteAll();
@@ -57,9 +57,9 @@ public class DemoApplication {
 		abonneRepository.deleteAll();
 		boRepository.deleteAll();
 		offreRepository.deleteAll();
-		virmentPermanentRepository.deleteAll();*/
+		virmentPermanentRepository.deleteAll();
 		return args->{
-			/*Stream.of("ab" , "bc").forEach(c->{
+			Stream.of("ab" , "bc").forEach(c->{
 				List<BO> bos = new ArrayList<>();
 				List<Abonne> abonnes = new ArrayList<>();
 				
@@ -79,11 +79,13 @@ public class DemoApplication {
 				ab.setNom("nom");
 				ab.setIdBo(c);
 				ab.setDomaine("Banque");
+				ab.setCin("HH"+c);
 				abonnes.add(ab);
 				
 				Abonne ab1 = new Abonne();
 				ab1.setIdAbonne(c+10);
 				ab1.setNomComplet("complet"+c);
+				ab1.setCin("HH"+c+"A");
 				ab1.setIdBo(c);
 				abonnes.add(ab1);
 				
@@ -93,7 +95,7 @@ public class DemoApplication {
 				
 				Contrat contrat = new Contrat();
 				contrat.setIdContrat(c); contrat.setIdAbonne(c);
-				ab.setContrat(contrat);
+
 				
 				Offre offre1 = new Offre();
 				offre1.setIdContrat(c); offre1.setIdOffre(c);
@@ -102,7 +104,7 @@ public class DemoApplication {
 				List<Offre> offres = new ArrayList<>();
 				offres.add(offre1);
 				offres.add(offre2);
-				contrat.setOffres(offres);
+
 				
 				//compte
 				Compte cpt1 = new Compte();
@@ -147,7 +149,7 @@ public class DemoApplication {
 				
 				
 				
-			});	*/
+			});	
 		};
 	}
 	

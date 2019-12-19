@@ -9,5 +9,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface ContratRepository extends MongoRepository<Contrat, Integer>{
 	Contrat findByIdContrat(String idContrat);
 	void deleteByIdContrat(String idContrat);
+	Contrat findByIdAbonne(String idAbonne);
 
 }

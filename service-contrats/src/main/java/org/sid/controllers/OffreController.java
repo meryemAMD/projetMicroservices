@@ -34,6 +34,11 @@ public class OffreController {
 		return offreService.findById(id);
     }
 	
+	@GetMapping(value = "Abonne/{idAbonne}")
+	public List<Offre> findByAbonne(@PathVariable String idAbonne) {
+		return offreService.findByAbonne(idAbonne);
+    }
+	
 	@PutMapping(value = "/" , consumes = "application/json")
 	public void update (@RequestBody Offre Offre) {
 		offreService.updateOffre(Offre);
@@ -44,8 +49,11 @@ public class OffreController {
 		offreService.saveOffre(Offre , idContrat);
 	}
 	
-	//@DeleteMapping(value = "/{idOffre}/{idContrat}")
-	//@RequestMapping(value="/{idOffre}/{idContrat}" , method = RequestMethod.DELETE)
+	@PostMapping(value = "/{idAbonne}" , consumes = "application/json")
+	public void saveByIdAbonne (@RequestBody Offre offre ,  @PathVariable String idAbonne) {
+		offreService.saveOffreByIdAbonne(offre, idAbonne);
+	}
+
 	@RequestMapping(value="/{idOffre}/{idContrat}",method = RequestMethod.DELETE)
 
     public void deleteOffre(@RequestBody Offre offre , @PathVariable String idContrat) {
