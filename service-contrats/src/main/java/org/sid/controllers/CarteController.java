@@ -32,8 +32,8 @@ public class CarteController {
     }
 	
 	@GetMapping(value = "Compte/{idCompte}")
-	public List<Carte> findByIdCompte(@PathVariable String id) {
-		return carteService.findIdByCompte(id);
+	public List<Carte> findByIdCompte(@PathVariable String idCompte) {
+		return carteService.findIdByCompte(idCompte);
     }
 	
 	@PutMapping(value = "/" , consumes = "application/json")

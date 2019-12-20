@@ -31,8 +31,8 @@ public class CompteController {
     }
 	
 	@GetMapping(value = "Abonne/{idAbonne}")
-	public List<Compte> findByIdAbonne(@PathVariable String id) {
-		return compteService.findIdByAbonne(id);
+	public List<Compte> findByIdAbonne(@PathVariable String idAbonne) {
+		return compteService.findIdByAbonne(idAbonne);
     }
 	
 	@PutMapping(value = "/" , consumes = "application/json")

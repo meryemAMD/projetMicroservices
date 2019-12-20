@@ -44,12 +44,12 @@ public class OffreController {
 		offreService.updateOffre(Offre);
 	}
 
-	@PostMapping(value = "/{idContrat}" , consumes = "application/json")
+	@PostMapping(value = "Contrat/{idContrat}" , consumes = "application/json")
 	public void save (@RequestBody Offre Offre ,  @PathVariable String idContrat) {
 		offreService.saveOffre(Offre , idContrat);
 	}
 	
-	@PostMapping(value = "/{idAbonne}" , consumes = "application/json")
+	@PostMapping(value = "Abonne/{idAbonne}" , consumes = "application/json")
 	public void saveByIdAbonne (@RequestBody Offre offre ,  @PathVariable String idAbonne) {
 		offreService.saveOffreByIdAbonne(offre, idAbonne);
 	}
