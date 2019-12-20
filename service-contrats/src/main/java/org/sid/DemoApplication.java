@@ -40,7 +40,7 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
-
+/*
 	@Bean
 	CommandLineRunner start(AbonneRepository abonneRepository , BORepository boRepository , CompteRepository compteRepository , 
 			ContratRepository contratRepository , OffreRepository offreRepository
@@ -152,5 +152,5 @@ public class DemoApplication {
 			});	
 		};
 	}
-	
+	*/
 }
