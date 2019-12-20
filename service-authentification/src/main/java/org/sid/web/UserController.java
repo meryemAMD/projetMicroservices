@@ -14,25 +14,29 @@ public class UserController {
     @PostMapping("/register")
     public AppUser register(@RequestBody  UserForm userForm){
         return  accountService.saveUser(
-                userForm.getUsername(),userForm.getPassword(),userForm.getConfirmedPassword());
+                userForm.getUsername(),userForm.getPassword(),userForm.getConfirmedPassword(),userForm.getEmail());
     }
 }
 class UserForm{
     private String username;
     private String password;
     private String confirmedPassword;
+    private String email;
     
     
 	public UserForm() {
 		super();
 	}
 	
-	public UserForm(String username, String password, String confirmedPassword) {
+	
+	public UserForm(String username, String password, String confirmedPassword, String email) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.confirmedPassword = confirmedPassword;
+		this.email = email;
 	}
+
 
 	public String getUsername() {
 		return username;
@@ -52,5 +56,14 @@ class UserForm{
 	public void setConfirmedPassword(String confirmedPassword) {
 		this.confirmedPassword = confirmedPassword;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
     
 }

@@ -24,19 +24,19 @@ public class SecServiceApplication {
     @Bean
     CommandLineRunner start(AccountService accountService,AppUserRepository appUserRepository,AppRoleRepository appRoleRepository){
         return args->{
-       /* 	appRoleRepository.deleteAll();
+        /*	appRoleRepository.deleteAll();
         	appUserRepository.deleteAll();
 
             accountService.save(new AppRole(null,"USER", new ArrayList<AppUser>()));
             accountService.save(new AppRole(null,"ADMIN",new ArrayList<AppUser>()));
             Stream.of("user1","user2","user3","admin").forEach(un->{
-                accountService.saveUser(un,"1234","1234");
+                accountService.saveUser(un,"1234","1234",un+"@gmail.com");
                 
             });
 
          
-            accountService.addRoleToUser("admin","ADMIN");
-           */
+            accountService.addRoleToUser("admin","ADMIN");*/
+           
         };
     }
     @Bean

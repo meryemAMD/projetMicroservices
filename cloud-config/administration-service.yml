@@ -1,0 +1,11 @@
+  
+spring:
+  application:
+    name: administration-service
+
+
+
+spring.data.mongodb.uri: mongodb://localhost/ebanking
+ 
+server:
+  port: 7258

@@ -1,4 +1,4 @@
-spring.data.mongodb.uri: mongodb://localhost/ebanking
+#spring.data.mongodb.uri: mongodb://localhost/ebanking
  
-server:
-  port: 8888
+#server:
+#  port: 9854

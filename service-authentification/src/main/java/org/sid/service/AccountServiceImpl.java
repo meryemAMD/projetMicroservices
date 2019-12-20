@@ -22,13 +22,15 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AppUser saveUser(String username, String password, String confirmedPassword) {
+    public AppUser saveUser(String username, String password, String confirmedPassword,String email) {
         AppUser  user=appUserRepository.findByUsername(username);
         if(user!=null) throw new RuntimeException("User already exists");
         if(!password.equals(confirmedPassword)) throw new RuntimeException("Please confirm your password");
         AppUser appUser=new AppUser();
         appUser.setUsername(username);
         appUser.setActived(true);
+        appUser.setEmail(email);
+        System.out.println(" save user email "+email);
         appUser.setPassword(bCryptPasswordEncoder.encode(password));
         appUserRepository.save(appUser);
 
