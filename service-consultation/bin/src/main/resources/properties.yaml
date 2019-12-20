@@ -1,0 +1,15 @@
+#spring:
+#  application:
+#    name: spring-cloud-ribbon
+
+#spring.data.mongodb.uri: mongodb://localhost/ebanking
+ 
+#server:
+#  port: 8888
+ 
+#abonne:
+ # ribbon:
+  #  eureka:
+   #   enabled: false
+    #listOfServers: localhost:9092,localhost:9999
+    #ServerListRefreshInterval: 15000

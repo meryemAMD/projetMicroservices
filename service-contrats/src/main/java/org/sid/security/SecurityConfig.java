@@ -28,9 +28,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/Comptes/**").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/Cartes/**").permitAll();
 
-       // http.authorizeRequests().antMatchers("/Contrats/**").hasAuthority("ADMIN");
+     //   http.authorizeRequests().antMatchers("/Abonnes/**").hasAuthority("ADMIN");
   //     http.authorizeRequests().antMatchers("/Offres/**").hasAuthority("USER");
-      //  http.authorizeRequests().anyRequest().authenticated();
+       // http.authorizeRequests().anyRequest().authenticated();
        http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
