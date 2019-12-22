@@ -1,12 +1,17 @@
 package org.sid.service;
 
+import java.util.UUID;
+
 import org.sid.dao.AppRoleRepository;
 import org.sid.dao.AppUserRepository;
 import org.sid.entities.AppRole;
 import org.sid.entities.AppUser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 
 @Service
@@ -14,6 +19,8 @@ public class AccountServiceImpl implements AccountService {
     private AppUserRepository appUserRepository;
     private AppRoleRepository appRoleRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Autowired
+	private EmailSenderService emailSenderService;
 
     public AccountServiceImpl(AppUserRepository appUserRepository, AppRoleRepository appRoleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.appUserRepository = appUserRepository;
@@ -23,18 +30,31 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AppUser saveUser(String username, String password, String confirmedPassword,String email) {
-        AppUser  user=appUserRepository.findByUsername(username);
+        
+    	String confirmationToken = UUID.randomUUID().toString();
+
+    	AppUser  user=appUserRepository.findByUsername(username);
         if(user!=null) throw new RuntimeException("User already exists");
         if(!password.equals(confirmedPassword)) throw new RuntimeException("Please confirm your password");
         AppUser appUser=new AppUser();
         appUser.setUsername(username);
-        appUser.setActived(true);
+        appUser.setActived(false);
         appUser.setEmail(email);
-        System.out.println(" save user email "+email);
+        appUser.setConfirmationToken(confirmationToken);
+        System.out.println(" confirmatuon token "+ appUser.getConfirmationToken());
         appUser.setPassword(bCryptPasswordEncoder.encode(password));
         appUserRepository.save(appUser);
 
         addRoleToUser(username,"USER");
+        
+    	SimpleMailMessage mailMessage = new SimpleMailMessage();
+		mailMessage.setTo(appUser.getEmail());
+		mailMessage.setSubject("Complete Registration!");
+		mailMessage.setFrom("project4ann.2019@gmail.com");
+		mailMessage.setText("To confirm your account, please click here : "
+		+"http://localhost:4200/#/login?token="+appUser.getConfirmationToken());
+		
+		emailSenderService.sendEmail(mailMessage);
         return appUser;
     }
 

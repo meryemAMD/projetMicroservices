@@ -1,0 +1,9 @@
+spring.data.mongodb.uri: mongodb://localhost/ebanking
+
+ 
+server:
+ port: 8800
+  
+#spring:
+#  application:
+#    name: contrat-service

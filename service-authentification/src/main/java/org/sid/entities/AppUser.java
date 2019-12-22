@@ -32,7 +32,8 @@ public class AppUser {
     private String email;
     @DBRef
     private Collection<AppRole> roles=new ArrayList<>();
-    
+    private String confirmationToken;
+
     
 	public AppUser() {
 		super();
@@ -66,6 +67,27 @@ public class AppUser {
 	public void setId(String id) {
 		this.id = id;
 	}
+
+
+
+
+
+
+
+
+	public String getConfirmationToken() {
+		return confirmationToken;
+	}
+
+
+
+
+
+	public void setConfirmationToken(String confirmationToken) {
+		this.confirmationToken = confirmationToken;
+	}
+
+
 
 
 
