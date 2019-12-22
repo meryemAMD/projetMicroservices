@@ -56,8 +56,8 @@ public class OffreController {
 
 	@RequestMapping(value="/{idOffre}/{idContrat}",method = RequestMethod.DELETE)
 
-    public void deleteOffre(@RequestBody Offre offre , @PathVariable String idContrat) {
-		offreService.deleteOffre(offre , idContrat);
+    public void deleteOffre(@PathVariable String idOffre , @PathVariable String idContrat) {
+		offreService.deleteOffre(idOffre , idContrat);
     }
 	
 

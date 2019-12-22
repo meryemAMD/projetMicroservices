@@ -56,7 +56,9 @@ public class OffreService implements OffreServiceInt {
 	 * @see org.sid.services.OffreServiceInt#deleteOffre(org.sid.entities.Offre, java.lang.String)
 	 */
 	@Override
-	public void deleteOffre(Offre offre, String idContrat) {
+	public void deleteOffre(String idOffre, String idContrat) {
+		Offre offre = new Offre();
+		offre.setIdOffre(idOffre);
 		offreRepository.delete(offre);
 	}
 

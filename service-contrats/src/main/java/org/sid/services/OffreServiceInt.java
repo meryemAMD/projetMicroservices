@@ -12,7 +12,7 @@ public interface OffreServiceInt {
 
 	void saveOrUpdateOffre(Offre offre);
 
-	void deleteOffre(Offre offre, String idContrat);
+	void deleteOffre(String idOffre, String idContrat);
 
 	void updateOffre(Offre offre);
 
