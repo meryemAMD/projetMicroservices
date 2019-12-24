@@ -38,7 +38,9 @@ public class AccountServiceImpl implements AccountService {
         if(!password.equals(confirmedPassword)) throw new RuntimeException("Please confirm your password");
         AppUser appUser=new AppUser();
         appUser.setUsername(username);
-        appUser.setActived(false);
+       // appUser.setActived(false);
+        appUser.setActived(true);
+
         appUser.setEmail(email);
         appUser.setConfirmationToken(confirmationToken);
         System.out.println(" confirmatuon token "+ appUser.getConfirmationToken());
@@ -47,14 +49,14 @@ public class AccountServiceImpl implements AccountService {
 
         addRoleToUser(username,"USER");
         
-    	SimpleMailMessage mailMessage = new SimpleMailMessage();
+    /*	SimpleMailMessage mailMessage = new SimpleMailMessage();
 		mailMessage.setTo(appUser.getEmail());
 		mailMessage.setSubject("Complete Registration!");
 		mailMessage.setFrom("project4ann.2019@gmail.com");
 		mailMessage.setText("To confirm your account, please click here : "
 		+"http://localhost:4200/#/login?token="+appUser.getConfirmationToken());
 		
-		emailSenderService.sendEmail(mailMessage);
+		emailSenderService.sendEmail(mailMessage);*/
         return appUser;
     }
 

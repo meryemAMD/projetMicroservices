@@ -50,7 +50,7 @@ public class DemoApplication {
 			OperationRepository operationRepository , UserRepository userRepository , VirmentPermanentRepository virmentPermanentRepository
 			
 			) {
-		compteRepository.deleteAll();
+	/*	compteRepository.deleteAll();
 		contratRepository.deleteAll();
 		agenceRepository.deleteAll();
 		beneficiaireRepository.deleteAll();
@@ -61,9 +61,9 @@ public class DemoApplication {
 		boRepository.deleteAll();
 		offreRepository.deleteAll();
 		virmentPermanentRepository.deleteAll();
-		//releveRepository.deleteAll();
+		//releveRepository.deleteAll();*/
 		return args->{
-			Stream.of("ab" , "bc").forEach(c->{
+			/*Stream.of("ab" , "bc").forEach(c->{
 				List<BO> bos = new ArrayList<>();
 				List<Abonne> abonnes = new ArrayList<>();
 				
@@ -170,7 +170,7 @@ public class DemoApplication {
 			});
 			operationRepository.findAll().forEach(s->{
 				System.out.println(s.toString());//exp Lamda
-			});
+			});*/
 		
 			
 		
