@@ -22,14 +22,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	// a revoir 
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
- 
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/Agences/**").permitAll();
-
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/Bos/**").permitAll();
 
-    //    http.authorizeRequests().antMatchers("/Bos/**").hasAuthority("ADMIN");
-  //     http.authorizeRequests().antMatchers("/Offres/**").hasAuthority("USER");
-       // http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().antMatchers("/Bos/**","/Agences/**").hasAuthority("ADMIN");
+       http.authorizeRequests().anyRequest().authenticated();
        http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 

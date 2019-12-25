@@ -22,15 +22,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	// a revoir 
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/Abonnes/**").permitAll();
-       http.authorizeRequests().antMatchers(HttpMethod.GET,"/Contrats/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/Offres/**").permitAll();
+
        http.authorizeRequests().antMatchers(HttpMethod.GET,"/Comptes/**").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/Cartes/**").permitAll();
 
-   //    http.authorizeRequests().antMatchers("/Comptes/**").hasAuthority("ADMIN");
-  //     http.authorizeRequests().antMatchers("/Offres/**").hasAuthority("USER");
-     //  http.authorizeRequests().anyRequest().authenticated();
+      http.authorizeRequests().antMatchers("/Comptes/**","/Cartes/**").hasAnyAuthority("ABONNE","BO");
+     // http.authorizeRequests().antMatchers("/Comptes/**","/Cartes/**").hasAuthority("ABONNE");
+
+       http.authorizeRequests().anyRequest().authenticated();
        http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 

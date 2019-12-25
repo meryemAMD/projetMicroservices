@@ -47,19 +47,57 @@ public class AccountServiceImpl implements AccountService {
         appUser.setPassword(bCryptPasswordEncoder.encode(password));
         appUserRepository.save(appUser);
 
-        addRoleToUser(username,"USER");
+      //  addRoleToUser(username,"USER");
         
-    /*	SimpleMailMessage mailMessage = new SimpleMailMessage();
+    	SimpleMailMessage mailMessage = new SimpleMailMessage();
+    	
 		mailMessage.setTo(appUser.getEmail());
-		mailMessage.setSubject("Complete Registration!");
+		mailMessage.setSubject("Création de compte sur E-banking!");
 		mailMessage.setFrom("project4ann.2019@gmail.com");
-		mailMessage.setText("To confirm your account, please click here : "
-		+"http://localhost:4200/#/login?token="+appUser.getConfirmationToken());
+		mailMessage.setText("Bonjour,"+appUser.getUsername()+"\n Votre compte sur l'espace Ebanking a été crée.  \n"
+				+ "Visitez le lien suivant pour changer votre mot de passe en utilisant le lien suivant: http://localhost:4200/#/change-password?token="+appUser.getConfirmationToken()+"."
+						+ "\n Utiliser les informations suivantes:  \n  -Nom d'utilisateur "+appUser.getUsername()+
+				" \n -Code d'accès :"+appUser.getConfirmationToken());
+		//mailMessage.setText("Bonjour,http://localhost:4200/#/change-password?token="+appUser.getConfirmationToken());
+				//appUser.getConfirmationToken())
+		emailSenderService.sendEmail(mailMessage);
 		
-		emailSenderService.sendEmail(mailMessage);*/
+		
+		
         return appUser;
     }
 
+	@Override
+	public AppUser ChangePassword(String username, String password, String confirmedPassword,
+			String confirmationToken) {
+		// TODO Auto-generated method stub
+		
+		AppUser  user=appUserRepository.findByUsername(username);
+        if(user==null) throw new RuntimeException("User doesn't exist!");
+        else {
+        	 if(!password.equals(confirmedPassword)) throw new RuntimeException("Please confirm your password");
+        	 else  if(!confirmationToken.equals(user.getConfirmationToken())) throw new RuntimeException("Acces Code is invalid !");
+        	 else   if(!username.equals(user.getUsername())) throw new RuntimeException("Username is invalid !");
+        	 else {
+             user.setPassword(bCryptPasswordEncoder.encode(password));
+             user.setConfirmationToken("");
+             appUserRepository.save(user);
+         	SimpleMailMessage mailMessage = new SimpleMailMessage();
+    		mailMessage.setTo(user.getEmail());
+    		mailMessage.setSubject("Modification de mot de passe!");
+    		mailMessage.setFrom("project4ann.2019@gmail.com");
+    		mailMessage.setText("Bonjour,"+user.getUsername()+" \n Votre mot de passe a été changé ");
+    				//appUser.getConfirmationToken())
+    		
+    		emailSenderService.sendEmail(mailMessage);
+        	 }
+        }
+       
+        
+
+		return user;
+	}
+    
     @Override
     public AppRole save(AppRole role) {
         return appRoleRepository.save(role);
@@ -71,15 +109,21 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void addRoleToUser(String username, String rolename) {
-        AppUser appUser=appUserRepository.findByUsername(username);
+    public void addRoleToUser(String idUser, String rolename) {
+        AppUser appUser=appUserRepository.findByIdUser(idUser);
         AppRole appRole=appRoleRepository.findByRoleName(rolename);
-        
+        System.out.println("User "+appUser.getUsername());
+        System.out.println("Role "+appRole.getRoleName());
+
        // System.out.println(" rolename "+rolename+"  "+appRole.getId());
         //System.out.println(" appUser "+appUser.getId());
-       
-        appUser.getRoles().add(appRole);
-        appUserRepository.save(appUser);
+       if(appUser!=null && appRole!=null) {
+    	   
+    	   appUser.getRoles().add(appRole);
+           appUserRepository.save(appUser);  
+       }
+       else 
+         throw new RuntimeException("User or Role Doesn't exist!");
 
    
 
@@ -87,4 +131,29 @@ public class AccountServiceImpl implements AccountService {
 
         
     }
+
+	@Override
+	public AppUser saveUserWithRole(String username, String password, String confirmedPassword, String email,
+			String RoleName) {
+		String confirmationToken = UUID.randomUUID().toString();
+
+    	AppUser  user=appUserRepository.findByUsername(username);
+        if(user!=null) throw new RuntimeException("User already exists");
+        if(!password.equals(confirmedPassword)) throw new RuntimeException("Please confirm your password");
+        AppUser appUser=new AppUser();
+        appUser.setUsername(username);
+        appUser.setActived(true);
+
+        appUser.setEmail(email);
+        appUser.setConfirmationToken(confirmationToken);
+        System.out.println(" confirmatuon token "+ appUser.getConfirmationToken());
+        appUser.setPassword(bCryptPasswordEncoder.encode(password));
+        appUserRepository.save(appUser);
+
+       addRoleToUser(appUser.getIdUser(),RoleName);
+  
+        return appUser;
+	}
+
+
 }

@@ -24,18 +24,23 @@ public class SecServiceApplication {
     @Bean
     CommandLineRunner start(AccountService accountService,AppUserRepository appUserRepository,AppRoleRepository appRoleRepository){
         return args->{
-        /*	appRoleRepository.deleteAll();
+        	/*appRoleRepository.deleteAll();
         	appUserRepository.deleteAll();
 
-            accountService.save(new AppRole(null,"USER", new ArrayList<AppUser>()));
-            accountService.save(new AppRole(null,"ADMIN",new ArrayList<AppUser>()));
-            Stream.of("user1","user2","user3","admin").forEach(un->{
-                accountService.saveUser(un,"1234","1234",un+"@gmail.com");
-                
-            });
+        	AppRole ADMIN= new AppRole(null,"ADMIN", new ArrayList<AppUser>());
+        	AppRole ABONNES= new AppRole(null,"ABONNE", new ArrayList<AppUser>());
+        	AppRole BO= new AppRole(null,"BO",new ArrayList<AppUser>());
+        	accountService.save(ADMIN);accountService.save(ABONNES);accountService.save(BO);
+        	
 
-         
-            accountService.addRoleToUser("admin","ADMIN");*/
+            AppUser user1=accountService.saveUser("bo","1234","1234","user1@gmail.com");
+            AppUser user2=accountService.saveUser("abonne","1234","1234","user2@gmail.com");
+            AppUser admin=accountService.saveUser("admin","1234","1234","admin@gmail.com");
+            
+            
+            accountService.addRoleToUser(user1.getIdUser(), "BO");
+            accountService.addRoleToUser(user2.getIdUser(), "ABONNE");
+            accountService.addRoleToUser(admin.getIdUser(),"ADMIN");*/
            
         };
     }
