@@ -23,14 +23,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/Abonnes/**").permitAll();
-       http.authorizeRequests().antMatchers(HttpMethod.GET,"/Contrats/**").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/Contrats/**").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/Offres/**").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/Prelevement/**").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/Comptes/**").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/Cartes/**").permitAll();
 
-     //   http.authorizeRequests().antMatchers("/Abonnes/**").hasAuthority("ADMIN");
-  //     http.authorizeRequests().antMatchers("/Offres/**").hasAuthority("USER");
-       // http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().antMatchers("/Abonnes/**","/Cartes/**","/Comptes/**","/Contrats/**","/Offres/**",
+        		"/Prelevement/**").hasAuthority("BO");
+        http.authorizeRequests().anyRequest().authenticated();
        http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 

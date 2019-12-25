@@ -9,6 +9,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface AppUserRepository extends MongoRepository<AppUser,String> {
     public AppUser findByUsername(String username);
+    public AppUser  findByIdUser(String idUser);
+
     public AppUser findByConfirmationToken(String confirmationToken);
 
 }

@@ -22,7 +22,7 @@ import javax.validation.constraints.Email;
 
 public class AppUser {
     @Id
-    private String id;
+    private String idUser;
     @Indexed(unique=true)
     private String username;
   //  @JsonIgnore
@@ -38,18 +38,10 @@ public class AppUser {
 	public AppUser() {
 		super();
 	}
-	
-	
-
-
-
-	public AppUser(String username, String password, boolean actived, @Email String email,
-			Collection<AppRole> roles) {
-		super();
-		this.id = id;
+	public AppUser(String idUser, String username, String password, @Email String email, Collection<AppRole> roles) {
+		
 		this.username = username;
 		this.password = password;
-		this.actived = actived;
 		this.email = email;
 		this.roles = roles;
 	}
@@ -58,15 +50,54 @@ public class AppUser {
 
 
 
-	public String getId() {
-		return id;
+
+
+
+
+	public AppUser(String idUser, String username, String password, boolean actived, @Email String email,
+			Collection<AppRole> roles
+			//, String confirmationToken
+			) {
+		super();
+		this.idUser = idUser;
+		this.username = username;
+		this.password = password;
+		this.actived = actived;
+		this.email = email;
+		this.roles = roles;
+	//	this.confirmationToken = confirmationToken;
 	}
 
 
 
-	public void setId(String id) {
-		this.id = id;
+
+
+
+
+
+
+
+
+	public String getIdUser() {
+		return idUser;
 	}
+
+
+
+
+
+
+
+
+
+
+
+	public void setIdUser(String idUser) {
+		this.idUser = idUser;
+	}
+
+
+
 
 
 
