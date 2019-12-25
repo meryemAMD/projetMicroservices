@@ -26,6 +26,11 @@ public class FactureController {
 			return factureService.createFacture(operation , idCompteSrc , idAbonne);
 	}
 	
+	@PostMapping(value = "valider/" , consumes = "application/json")
+	public Boolean validerFacture(@RequestBody Operation operation) {
+			return factureService.validerFacture(operation);
+	}
+	
 	@GetMapping(value = "Entreprises/{domaine}")
 	public List<Abonne> findEntreprises(@PathVariable String domaine) {
 			return factureService.findEntreprises(domaine);

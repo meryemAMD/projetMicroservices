@@ -1,6 +1,7 @@
 package org.sid.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ public class Beneficiaire {
 	private String idBeneficiaire;
 	private String idCompteBeneficiaire;
 	private String idCompteSrc;
+	@Indexed(unique=true)
 	private String username;
 	
 	

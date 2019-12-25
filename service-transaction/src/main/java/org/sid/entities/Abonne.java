@@ -30,8 +30,6 @@ public class Abonne {
 	private String nomComplet;
 	private String domaine;
     private Boolean actif;
-    @DBRef  
-    private Contrat contrat;
     private String idBo;
     
 	public Abonne() {
@@ -127,14 +125,7 @@ public class Abonne {
 		this.actif = actif;
 	}
 
-	public Contrat getContrat() {
-		return contrat;
-	}
-
-	public void setContrat(Contrat contrat) {
-		this.contrat = contrat;
-	}
-
+	
 	public String getIdBo() {
 		return idBo;
 	}

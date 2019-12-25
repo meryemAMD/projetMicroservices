@@ -129,5 +129,11 @@ public class AbonneService implements AbonneServiceInt {
 		abonneRepository.save(abonne);
 	}
 
+	@Override
+	public List<Abonne> findEntreprises(String domaine) {
+		List<Abonne> abonnes = abonneRepository.findByDomaine(domaine);
+		
+		return abonnes;
+	}
 
 }

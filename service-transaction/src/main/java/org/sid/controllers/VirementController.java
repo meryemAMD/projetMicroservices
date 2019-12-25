@@ -2,9 +2,11 @@ package org.sid.controllers;
 
 import java.util.List;
 
+import org.sid.entities.Abonne;
 import org.sid.entities.Operation;
 import org.sid.entities.ValidationRequest;
 import org.sid.entities.ValidationResponse;
+import org.sid.proxies.FeignContratServiceClient;
 import org.sid.services.VirementServiceInt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,16 +25,23 @@ public class VirementController {
 	@Autowired
 	private VirementServiceInt virementService;
 	
+	@Autowired
+	FeignContratServiceClient abonneClient;
+	
 	@PostMapping(value = "/{idCompteSrc}" , consumes = "application/json")
 	public Boolean create(@RequestBody Operation operation , @PathVariable String idCompteSrc) {
 			return virementService.create(operation , idCompteSrc);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/valider" , consumes = "application/json")
+	@RequestMapping(method = RequestMethod.POST, value = "/valider" , consumes = "application/json")
 	public ValidationResponse valider(@RequestBody ValidationRequest validationRequest ) {
 		return virementService.valider(validationRequest);
     }
 	
-	
+	@RequestMapping(method = RequestMethod.POST, value = "/")
+	public Boolean test() {
+		
+		return true;
+    }
 
 }

@@ -14,6 +14,6 @@ public interface FactureServiceInt {
 
 	List<Abonne> findEntreprises(String domaine);
 
-	ValidationResponse valider(ValidationRequest vq);
+	Boolean validerFacture(Operation operation);
 
 }
