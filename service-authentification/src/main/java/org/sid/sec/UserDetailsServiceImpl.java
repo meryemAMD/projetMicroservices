@@ -31,4 +31,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         });
         return new User(appUser.getUsername(),appUser.getPassword(),authorities);
     }
+    public AppUser loadAppUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("  loadAPPUserByUsername  ");
+
+        AppUser appUser=accountService.loadUserByUsername(username);
+        System.out.println("USER Loaded "+appUser.getIdUser());
+      
+        return appUser;
+    }
 }
