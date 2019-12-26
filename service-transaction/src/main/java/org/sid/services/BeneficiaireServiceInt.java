@@ -16,6 +16,8 @@ public interface BeneficiaireServiceInt {
 
 	List<Beneficiaire> findAll();
 
-	void deleteBeneficiaire(Beneficiaire beneficiaire);
+	void deleteBeneficiaire(String idBeneficaire);
+
+	List<Beneficiaire> findByIdAbonne(String idAbonne);
 
 }

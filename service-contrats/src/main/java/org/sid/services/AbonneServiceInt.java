@@ -22,5 +22,7 @@ public interface AbonneServiceInt {
 
 	void changeState(String idAbonne, boolean b);
 
+	List<Abonne> findEntreprises(String domaine);
+
 
 }

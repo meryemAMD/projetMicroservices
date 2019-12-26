@@ -18,31 +18,30 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/Beneficiaires")
 public class BeneficiaireController {
-
 	
 	@Autowired
 	private BeneficiaireServiceInt beneficiaireService;
-	
-	
-	//1- FE will ask for beneficiaire of specific idBo
+
 	@RequestMapping(method = RequestMethod.GET, value = "byIdCompteSrc/{idCompteSrc}")
 	public List<Beneficiaire> findByIdCompteSrc(@PathVariable String idCompteSrc) {
 		return beneficiaireService.findByIdCompteSrc(idCompteSrc);
     }
 	
-	//2- FE will ask for details about specific beneficiaire
+	@RequestMapping(method = RequestMethod.GET, value = "Abonne/{idAbonne}")
+	public List<Beneficiaire> findByIdAbonne(@PathVariable String idAbonne) {
+		return beneficiaireService.findByIdAbonne(idAbonne);
+    }
+
 	@GetMapping(value = "/{id}")
 	public Beneficiaire findById(@PathVariable String id) {
 		return beneficiaireService.findById(id);
     }
-	
-	//FE will ask for update (only attributes not dbref here we don't implement cascade saveorupdate)
+
 	@PutMapping(value = "/" , consumes = "application/json")
 	public void update(@RequestBody Beneficiaire beneficiaire) throws Exception {
 		beneficiaireService.update(beneficiaire);
 	}
-	
-	//FE will ask for creating beneficiaire (here contract must be saved before)
+
 	@PostMapping(value = "/{idCompteSrc}" , consumes = "application/json")
 	public void create(@RequestBody Beneficiaire beneficiaire , @PathVariable String idCompteSrc) {
 			beneficiaireService.create(beneficiaire , idCompteSrc);
@@ -53,9 +52,9 @@ public class BeneficiaireController {
 		return beneficiaireService.findAll();
     }
 	
-	@DeleteMapping(value = "/")
-    public void deleteBeneficiaire(@RequestBody Beneficiaire beneficiaire) {
-		beneficiaireService.deleteBeneficiaire(beneficiaire);
+	@DeleteMapping(value = "/{idBeneficaire}")
+    public void deleteBeneficiaire(@PathVariable String idBeneficaire) {
+		beneficiaireService.deleteBeneficiaire(idBeneficaire);
     }
 	
 }

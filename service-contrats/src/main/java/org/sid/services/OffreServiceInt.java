@@ -2,6 +2,7 @@ package org.sid.services;
 
 import java.util.List;
 
+import org.sid.entities.Compte;
 import org.sid.entities.Offre;
 
 public interface OffreServiceInt {
@@ -21,5 +22,7 @@ public interface OffreServiceInt {
 	List<Offre> findByAbonne(String idAbonne);
 
 	void saveOffreByIdAbonne(Offre offre, String idAbonne);
+
+	boolean validatePlafond(String idAbonne, float montant, String type);
 
 }

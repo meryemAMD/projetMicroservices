@@ -60,5 +60,10 @@ public class OffreController {
 		offreService.deleteOffre(idOffre , idContrat);
     }
 	
+	@RequestMapping(value="/{idAbonne}/{montant}/{type}",method = RequestMethod.POST)
+    public Boolean validatePlafond(@PathVariable String idAbonne , @PathVariable float montant , @PathVariable String type ) {
+		return offreService.validatePlafond(idAbonne, montant, type);
+    }
+	
 
 }

@@ -1,12 +1,14 @@
 package org.sid.services;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
 import org.sid.dao.AbonneRepository;
 import org.sid.dao.ContratRepository;
 import org.sid.dao.OffreRepository;
+import org.sid.entities.Compte;
 import org.sid.entities.Contrat;
 import org.sid.entities.Offre;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,5 +97,22 @@ public class OffreService implements OffreServiceInt {
 		offreRepository.save(offre);
 	}
 
+
+	@Override
+	public
+	boolean validatePlafond(String idAbonne, float montant, String type) {
+		String idContrat = contratRepository.findByIdAbonne(idAbonne).getIdContrat();
+		List<Offre> offres = offreRepository.findByIdContrat(idContrat);
+		Offre offre;
+		for (Iterator<Offre> iterator = offres.iterator(); iterator.hasNext();) {
+			offre = iterator.next();
+	        if(offre.getType().equals(type)) {
+	        	if(offre.getMax() > montant && offre.getMin() < montant ) {
+	        		return true;
+	        	}
+	        }
+	    }
+		return false;
+	}
 
 }

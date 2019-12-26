@@ -39,7 +39,13 @@ public class AbonneController {
 
 	@GetMapping(value = "/{id}")
 	public Abonne findById(@PathVariable String id) {
+		System.out.println("hello");
 		return abonneService.findById(id);
+    }
+	
+	@GetMapping(value = "/Entreprises/{domaine}")
+	public List<Abonne> findEntrepriseByDomaine(@PathVariable String domaine) {
+		return abonneService.findEntreprises(domaine);
     }
 
 	@PutMapping(value = "/" , consumes = "application/json")
