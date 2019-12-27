@@ -24,5 +24,7 @@ public interface AbonneServiceInt {
 
 	List<Abonne> findEntreprises(String domaine);
 
+	Abonne findByIdUser(String idUser);
+
 
 }

@@ -15,5 +15,6 @@ public interface AbonneRepository extends MongoRepository<Abonne, Integer>{
 	List<Abonne> findByDomaine(String domaine);
 	Abonne findByIdAbonne(String idAbonne);
 	Abonne findByCin(String cin);
+	Abonne findByIdUser(String idUser);
 
 }

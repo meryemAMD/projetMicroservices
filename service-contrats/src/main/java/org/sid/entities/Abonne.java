@@ -29,6 +29,7 @@ public class Abonne {
 	private String idUser; //Non affiche
 	private String tel; //both
 	private String adresse; //both
+	private String mail;
 	private String SIRET; //Entreprise identifiant d'une entreprise
 	private String nomComplet; //entreprise
 	private String domaine; //Entreprise
@@ -142,8 +143,17 @@ public class Abonne {
 
 	public void setSIRET(String sIRET) {
 		SIRET = sIRET;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
 	}    
 
+	
 	
 	
     //@DBRef

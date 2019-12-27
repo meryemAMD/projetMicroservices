@@ -117,6 +117,7 @@ public class VirementService implements VirementServiceInt {
 			vr.setEtat(true);
 		}
 		else {
+			//si il n'a pas l'offfre il va setmessae "vous ne disposer pas if(idabonne -> )
 			vr.setEtat(false);
 			if(!(validateSolde(vq.getIdCompteSrc(), vq.getMontant()))) vr.setMessage("Votre solde est insuffisent!!");
 			else vr.setMessage("Vous avez dépassé les plafonds!!");

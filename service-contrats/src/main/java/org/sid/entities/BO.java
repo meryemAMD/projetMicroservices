@@ -21,16 +21,13 @@ public class BO {
 	private String nom;
 	private String prenom;
 	private String cin;
+	private String mail;
 	private String type;
 	private String idUser;
 	private String tel;
 	private String adresse;
 	private String idAgence;
-    @DBRef
-    private Collection<Abonne> abonnes;
-    
-    
-    
+   
 	public BO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -83,12 +80,21 @@ public class BO {
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
-	public Collection<Abonne> getAbonnes() {
-		return abonnes;
+
+	public String getMail() {
+		return mail;
 	}
-	public void setAbonnes(Collection<Abonne> abonnes) {
-		this.abonnes = abonnes;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
+	public String getIdAgence() {
+		return idAgence;
+	}
+	public void setIdAgence(String idAgence) {
+		this.idAgence = idAgence;
+	}
+	
+	
 
     
     

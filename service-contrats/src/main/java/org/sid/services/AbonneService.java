@@ -136,4 +136,9 @@ public class AbonneService implements AbonneServiceInt {
 		return abonnes;
 	}
 
+	@Override
+	public Abonne findByIdUser(String idUser) {
+		return abonneRepository.findByIdUser(idUser);
+	}
+
 }

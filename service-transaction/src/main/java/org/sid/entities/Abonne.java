@@ -8,6 +8,8 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,16 +22,18 @@ public class Abonne {
 
 	@Id
 	private String idAbonne;
-	private String nom;
-	private String prenom;
-	private String cin;
-	private String type;
-	private String idUser;
-	private String tel;
-	private String adresse;
-	private String nomComplet;
-	private String domaine;
-    private Boolean actif;
+	private String nom; //individu
+	private String prenom;  //individu
+	private String cin; //individu
+	private String type; //no affiché
+	private String idUser; //Non affiche
+	private String tel; //both
+	private String adresse; //both
+	private String mail;
+	private String SIRET; //Entreprise identifiant d'une entreprise
+	private String nomComplet; //entreprise
+	private String domaine; //Entreprise
+    private Boolean actif; //Both
     private String idBo;
     
 	public Abonne() {
@@ -125,15 +129,32 @@ public class Abonne {
 		this.actif = actif;
 	}
 
-	
 	public String getIdBo() {
 		return idBo;
 	}
 
 	public void setIdBo(String idBo) {
 		this.idBo = idBo;
+	}
+
+	public String getSIRET() {
+		return SIRET;
+	}
+
+	public void setSIRET(String sIRET) {
+		SIRET = sIRET;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
 	}    
 
+	
+	
 	
     //@DBRef
     //private  BO bo;

@@ -1,29 +1,27 @@
 package org.sid;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Stream;
+import java.util.logging.Logger;
 
-import org.sid.dao.AbonneRepository;
-import org.sid.dao.BeneficiaireRepository;
-import org.sid.dao.CompteRepository;
-import org.sid.dao.OperationRepository;
-import org.sid.dao.VirmentPermanentRepository;
-import org.sid.entities.Abonne;
-import org.sid.entities.Beneficiaire;
-import org.sid.entities.Compte;
-import org.sid.entities.Contrat;
-import org.sid.entities.Offre;
-import org.sid.entities.Operation;
-import org.sid.entities.VirmentPermanent;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.sleuth.zipkin2.ZipkinProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
 
 @EnableDiscoveryClient
 @SpringBootApplication
@@ -32,6 +30,32 @@ public class DemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
+	}
+	
+	/*
+	@RestController
+	class ZipkinController{
+	     
+	    @Autowired
+	    RestTemplate restTemplate;
+	 
+	    @Bean
+	    public RestTemplate getRestTemplate() {
+	        return new RestTemplate();
+	    }
+	 
+	 
+	    private final Logger LOG = Logger.getLogger(ZipkinController.class.getName());
+	     
+	    @GetMapping(value="/zipkin")
+	    public String zipkinService1() 
+	    {
+	        LOG.info("Inside zipkinService 1..");
+	         
+	        // String response = (String) restTemplate.exchange("http://localhost:8082/zipkin2", 
+	                       // HttpMethod.GET, null, new ParameterizedTypeReference<String>() {}).getBody();
+	        return "Hi...";
+	    }
 	}
 /*
 	@Bean
