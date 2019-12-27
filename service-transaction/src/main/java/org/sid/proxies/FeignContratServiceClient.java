@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.sid.entities.Abonne;
 import org.sid.entities.Compte;
+import org.sid.proxies.FeignConfiguration;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

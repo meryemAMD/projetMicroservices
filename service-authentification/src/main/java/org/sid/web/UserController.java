@@ -36,6 +36,11 @@ public class UserController {
                 userForm.getUsername(),userForm.getPassword(),userForm.getConfirmedPassword(),userForm.getEmail());
     }
     
+    @PostMapping("/registerAndGetIdUser")
+    public String registerAndGetIdUser(@RequestBody  UserForm userForm){
+       return  accountService.saveUser(userForm.getUsername(),userForm.getPassword(),userForm.getConfirmedPassword(),userForm.getEmail()).getIdUser();
+    }
+    
     @PostMapping("/Register")
     public AppUser Register(@RequestBody  UserForm userForm){
         return  accountService.saveUserWithRole(

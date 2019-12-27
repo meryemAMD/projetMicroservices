@@ -10,6 +10,8 @@ import org.sid.dao.ContratRepository;
 import org.sid.entities.Abonne;
 import org.sid.entities.Compte;
 import org.sid.entities.Contrat;
+import org.sid.entities.UserForm;
+import org.sid.proxies.FeignAuthentificationServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
@@ -24,10 +26,10 @@ public class AbonneService implements AbonneServiceInt {
 	
 	@Autowired
 	private CompteRepository compteRepository;
+	
+	@Autowired
+	FeignAuthentificationServiceClient feignAuthClient;
 
-	/* (non-Javadoc)
-	 * @see org.sid.services.AbonneServiceInt#findAll()
-	 */
 	@Override
 	public List<Abonne> findAll() {
 		// TODO Auto-generated method stub
@@ -48,7 +50,16 @@ public class AbonneService implements AbonneServiceInt {
 	 */
 	@Override
 	public void createIndividu(Abonne abonne) {
+		
+		UserForm user = new UserForm();
+		user.setUsername("@"+abonne.getPrenom()+abonne.getNom()+abonne.getCin());
+		user.setEmail(abonne.getMail());
+		user.setPassword("password"+abonne.getNom());
+		user.setConfirmedPassword("password"+abonne.getNom());
+		String idUser = feignAuthClient.registerAndGetIdUser(user);
+		
 		abonne.setIdAbonne(abonne.getCin());
+		abonne.setIdUser(idUser);
 		abonneRepository.save(abonne);
 		
 		Date now = new Date();
@@ -64,12 +75,20 @@ public class AbonneService implements AbonneServiceInt {
 		compteParDefaut.setIdAbonne(abonne.getCin());
 		compteParDefaut.setIdBo(abonne.getIdBo());
 		compteParDefaut.setSolde(0);
-
 		compteRepository.save(compteParDefaut);
+
 	}
 	
 	@Override
 	public void createEntreprise(Abonne abonne) {
+		UserForm user = new UserForm();
+		user.setUsername("@"+abonne.getPrenom()+abonne.getNom()+abonne.getCin());
+		user.setEmail(abonne.getMail());
+		user.setPassword("password"+abonne.getNom());
+		user.setConfirmedPassword("password"+abonne.getNom());
+		String idUser = feignAuthClient.registerAndGetIdUser(user);
+		
+		abonne.setIdUser(idUser);
 		abonne.setIdAbonne(abonne.getSIRET());
 		abonneRepository.save(abonne);
 		
@@ -139,6 +158,15 @@ public class AbonneService implements AbonneServiceInt {
 	@Override
 	public Abonne findByIdUser(String idUser) {
 		return abonneRepository.findByIdUser(idUser);
+	}
+
+	@Override
+	public String testFeign() {
+		UserForm user = new UserForm();
+		user.setUsername("@");
+		user.setPassword("password");
+		user.setConfirmedPassword("password");
+		return feignAuthClient.registerAndGetIdUser(user);
 	}
 
 }

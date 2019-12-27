@@ -3,7 +3,6 @@ package org.sid.controllers;
 import java.util.List;
 
 import org.sid.entities.Abonne;
-import org.sid.proxies.AbonneClient;
 import org.sid.services.AbonneServiceInt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -88,6 +87,11 @@ public class AbonneController {
 	@DeleteMapping(value = "/")
     public void deleteAbonne(@RequestBody Abonne abonne) {
 		abonneService.deleteAbonne(abonne);
+    }
+	
+	@GetMapping(value = "/Feign")
+    public String testFeign() {
+		return abonneService.testFeign();
     }
 	
 }

@@ -26,5 +26,7 @@ public interface AbonneServiceInt {
 
 	Abonne findByIdUser(String idUser);
 
+	String testFeign();
+
 
 }
