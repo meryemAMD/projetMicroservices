@@ -1,12 +1,19 @@
   
+  
 spring:
   application:
     name: contrat-service
 
  
-server:
-  port: 8800
-  
-spring.data.mongodb.uri: mongodb://localhost/ebanking
+spring.data.mongodb.uri: mongodb://meryem:ahmada@cluster0-shard-00-00-p3pao.mongodb.net:27017,cluster0-shard-00-01-p3pao.mongodb.net:27017,cluster0-shard-00-02-p3pao.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority
+ 
+
+server:  
+  port: ${PORT:0}
+eureka:  
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+
 
 
