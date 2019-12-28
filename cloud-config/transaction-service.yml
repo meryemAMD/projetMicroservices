@@ -2,7 +2,16 @@ spring:
   application:
     name: transaction-service
 
-spring.data.mongodb.uri: mongodb://localhost/ebanking
- 
-server:
-  port: 8889
+spring.data.mongodb.uri: mongodb://meryem:ahmada@cluster0-shard-00-00-p3pao.mongodb.net:27017,cluster0-shard-00-01-p3pao.mongodb.net:27017,cluster0-shard-00-02-p3pao.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority
+spring.data.mongodb.database : test
+
+server:  
+  port: ${PORT:0}
+eureka:  
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+spring.sleuth.sampler.percentage: 1.0
+spring.sleuth.web.skipPattern: (^cleanup.*)
