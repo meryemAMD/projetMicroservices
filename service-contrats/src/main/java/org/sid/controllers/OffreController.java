@@ -65,5 +65,9 @@ public class OffreController {
 		return offreService.validatePlafond(idAbonne, montant, type);
     }
 	
+	@RequestMapping(value="/validatePlafond/{idAbonne}/{montant}/{type}",method = RequestMethod.POST)
+    public Boolean validatePlafondRestricted(@PathVariable String idAbonne , @PathVariable float montant , @PathVariable String type ) {
+		return offreService.validatePlafond(idAbonne, montant, type);
+    }
 
 }

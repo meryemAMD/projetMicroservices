@@ -42,7 +42,7 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
-
+/*
 	@Bean
 	CommandLineRunner start(AbonneRepository abonneRepository , BORepository boRepository , CompteRepository compteRepository , 
 			ContratRepository contratRepository , OffreRepository offreRepository
@@ -61,7 +61,7 @@ public class DemoApplication {
 		boRepository.deleteAll();
 		offreRepository.deleteAll();
 		virmentPermanentRepository.deleteAll();
-		//releveRepository.deleteAll();*/
+		//releveRepository.deleteAll();
 		return args->{
 			/*Stream.of("ab" , "bc").forEach(c->{
 				List<BO> bos = new ArrayList<>();
@@ -170,12 +170,12 @@ public class DemoApplication {
 			});
 			operationRepository.findAll().forEach(s->{
 				System.out.println(s.toString());//exp Lamda
-			});*/
+			});
 		
 			
 		
 			
 		};
-	}
+	}*/
 	
 }

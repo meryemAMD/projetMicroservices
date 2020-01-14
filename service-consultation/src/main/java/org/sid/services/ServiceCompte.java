@@ -14,7 +14,7 @@ public interface ServiceCompte {
 	//public List<Compte> FindAllComptes();
 
 	public List<Compte> FindAllComptes(String id);
-	public List<Releve> ListDebitCredit(String id);
+	public List<Releve> ListDebitCredit(String idCompte);
 	
 
 }

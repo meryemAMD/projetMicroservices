@@ -28,27 +28,23 @@ public class ServiceCompteImp  implements ServiceCompte{
 	}
 
 	@Override
-	public List<Releve> ListDebitCredit(String  id) {
-		List<Operation>debitcredit=operationRepository.findAll();
+	public List<Releve> ListDebitCredit(String  idCompte) {
+		List<Operation>Opcredit=operationRepository.findByIdCompteBeneficiaire(idCompte);
+		List<Operation>Opdebit=operationRepository.findByIdCompteSrc(idCompte);
 		List<Releve>debit =new ArrayList<Releve>();
 		List<Releve>credit = new ArrayList<Releve>();
 		List<Releve>AllRelevies = new ArrayList<Releve>();
-		for (Operation operation : debitcredit) {
-			if(operation.getIdCompteSrc()==id)
-			{
-				Releve re=new Releve(operation, "debit");
-				debit.add(re);
-			}
-			if(operation.getIdCompteBeneficiaire()==id)
-			{
-				Releve re=new Releve(operation, "credit");
-				credit.add(re);
-			}
-			AllRelevies.addAll(debit);
-			AllRelevies.addAll(credit);
-			
-			
+		for (Operation operation : Opdebit) {
+			Releve re=new Releve(operation, "debit");
+			debit.add(re);
 		}
+		for (Operation operation : Opcredit) {
+			Releve re=new Releve(operation, "credit");
+			credit.add(re);
+		}
+		AllRelevies.addAll(credit);
+		AllRelevies.addAll(debit);
+		
 		
 		return AllRelevies;
 	}

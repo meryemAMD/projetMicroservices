@@ -31,7 +31,6 @@ public class Config extends AbstractMongoConfiguration  {
 
 	@Override
 	public MongoClient mongoClient() {
-
 		MongoClientURI uri = new MongoClientURI(chaineuri);  //  "mongodb://meryem:ahmada@cluster0-shard-00-00-p3pao.mongodb.net:27017,cluster0-shard-00-01-p3pao.mongodb.net:27017,cluster0-shard-00-02-p3pao.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority");
 		MongoClient mongoClient = new MongoClient(uri);
 		return mongoClient;

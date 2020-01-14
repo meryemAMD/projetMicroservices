@@ -56,6 +56,7 @@ public class AbonneService implements AbonneServiceInt {
 		user.setEmail(abonne.getMail());
 		user.setPassword("password"+abonne.getNom());
 		user.setConfirmedPassword("password"+abonne.getNom());
+		user.setRole("ABONNE");
 		String idUser = feignAuthClient.registerAndGetIdUser(user);
 		
 		abonne.setIdAbonne(abonne.getCin());
@@ -86,6 +87,7 @@ public class AbonneService implements AbonneServiceInt {
 		user.setEmail(abonne.getMail());
 		user.setPassword("password"+abonne.getNom());
 		user.setConfirmedPassword("password"+abonne.getNom());
+		user.setRole("ABONNE");
 		String idUser = feignAuthClient.registerAndGetIdUser(user);
 		
 		abonne.setIdUser(idUser);

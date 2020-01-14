@@ -12,4 +12,7 @@ public interface BORepository extends MongoRepository<BO, Integer>{
 	BO findByIdBo(String idBo);
 	void deleteByIdBo(String idBo);
 	List<BO> findByIdAgence(String id);
+	BO findByIdUser(String idUser);
+	
+	
 }

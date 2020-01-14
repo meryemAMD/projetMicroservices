@@ -66,7 +66,7 @@ public class BeneficiaireService implements BeneficiaireServiceInt {
 		//List<Compte> comptes = compteRepository.findByIdAbonne(idAbonne);//chercher les comptes de cet abonne
 		List<Compte> comptes = contratService.findByIdAbonne(idAbonne);
 		List<Beneficiaire> beneficiaires = new ArrayList<>(); 
-		for (Compte compte : comptes) {//cherhcer les beneficiaires de chaque compte
+		for (Compte compte : comptes) {//chercher les beneficiaires de chaque compte
 			beneficiaires.addAll(beneficiaireRepository.findByIdCompteSrc(compte.getIdCompte()));
 		}
 		return beneficiaires;

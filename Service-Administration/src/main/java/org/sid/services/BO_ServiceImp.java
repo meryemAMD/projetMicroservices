@@ -56,4 +56,11 @@ public class BO_ServiceImp  implements BO_Service{
 		return boRepository.findByIdAgence(idAgence);
 		
 	}
+
+	@Override
+	public String FindIdBo_ByIdUser(String idUser) {
+		// TODO Auto-generated method stub
+		BO b= boRepository.findByIdUser(idUser);
+		return b.getIdBo();
+	}
 }

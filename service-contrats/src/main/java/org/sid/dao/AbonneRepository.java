@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
-public interface AbonneRepository extends MongoRepository<Abonne, Integer>{
+public interface AbonneRepository extends MongoRepository<Abonne, String>{
 	@Query(value = "{ $and: [ { 'idBo' : ?0 }, { 'type' : ?1 } ] }")
 	List<Abonne> findByIdBoAndType(String idBo , String type);
 	List<Abonne> findByDomaine(String domaine);

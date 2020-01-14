@@ -9,12 +9,9 @@ import java.util.List;
 import org.sid.dao.AbonneRepository;
 import org.sid.dao.BeneficiaireRepository;
 import org.sid.dao.CompteRepository;
-import org.sid.dao.ContratRepository;
-import org.sid.dao.OffreRepository;
 import org.sid.dao.OperationRepository;
 import org.sid.entities.Abonne;
 import org.sid.entities.Compte;
-import org.sid.entities.Offre;
 import org.sid.entities.Operation;
 import org.sid.entities.ValidationRequest;
 import org.sid.entities.ValidationResponse;
@@ -43,37 +40,28 @@ public class FactureService implements FactureServiceInt {
 	public Boolean createFacture(Operation operation, String idCompteSrc , String idAbonne) {
 		int indicator = 0;
 		operation.setIdCompteSrc(idCompteSrc);
-		try {
-			Compte compteSrc = compteRepository.findByIdCompte(idCompteSrc);
-			Compte compteBene = compteRepository.findByIdAbonne(idAbonne).get(0);
-			if(validateSolde(idCompteSrc, operation.getMontant())) {
-				operation.setType("Paiement de facture");
-				operation.setDate(new Date());
-				//decrementer
-				compteSrc.setSolde(compteSrc.getSolde() - operation.getMontant());
-				//incrementer 
-				compteBene.setSolde(compteBene.getSolde() + operation.getMontant());
-				List<Compte> comptes = new ArrayList<>();
-				comptes.add(compteSrc);
-				comptes.add(compteBene);
-				
-				//save operation
-				operationRepository.save(operation);
-				indicator ++;
-				compteRepository.saveAll(comptes);
-				indicator ++;
-				return true;
-			}
-			return false;
+		Compte compteSrc = compteRepository.findByIdCompte(idCompteSrc);
+		Compte compteBene = compteRepository.findByIdAbonne(idAbonne).get(0);
+		if(validateSolde(idCompteSrc, operation.getMontant())) {
+			operation.setType("Paiement de facture");
+			operation.setDate(new Date());
+			//decrementer
+			compteSrc.setSolde(compteSrc.getSolde() - operation.getMontant());
+			//incrementer 
+			compteBene.setSolde(compteBene.getSolde() + operation.getMontant());
+			List<Compte> comptes = new ArrayList<>();
+			comptes.add(compteSrc);
+			comptes.add(compteBene);
+			
+			//save operation
+			operationRepository.save(operation);
+			indicator ++;
+			compteRepository.saveAll(comptes);
+			indicator ++;
+			return true;
 		}
-		catch(Exception ex) {
-			System.out.println("catching " + ex);
-			if(indicator == 1) {
-				operationRepository.delete(operation);
-				return false;
-			}
-			else return false;
-		}
+		return false;
+		
 	}
 
 	@Override
@@ -83,11 +71,10 @@ public class FactureService implements FactureServiceInt {
 		return false;	
 	}
 	
-	private Boolean validateSolde(String idCompte , float montant) {
+	Boolean validateSolde(String idCompte , float montant) {
 		if(compteRepository.findByIdCompte(idCompte).getSolde() - montant> 0) return true;
 		return false;
 	}
-
 
 	@Override
 	public List<Abonne> findEntreprises(String domaine) {

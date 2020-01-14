@@ -38,7 +38,7 @@ public class UserController {
     
     @PostMapping("/registerAndGetIdUser")
     public String registerAndGetIdUser(@RequestBody  UserForm userForm){
-       return  accountService.saveUser(userForm.getUsername(),userForm.getPassword(),userForm.getConfirmedPassword(),userForm.getEmail()).getIdUser();
+       return  accountService.saveUserWithRole(userForm.getUsername(),userForm.getPassword(),userForm.getConfirmedPassword(),userForm.getEmail(),userForm.getRole()).getIdUser();
     }
     
     @PostMapping("/Register")

@@ -28,9 +28,9 @@ public class CompteController {
 		return serviceCompte.FindAllComptes(idAbonne);
     }
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/DebitCredit/{idComptes}")
-	public List<Releve> FindAllComptesDebitCredit(@PathVariable String idComptes) {
-		return serviceCompte.ListDebitCredit(idComptes);
+	@RequestMapping(method = RequestMethod.GET, value = "/DebitCredit/{idCompte}")
+	public List<Releve> FindAllComptesDebitCredit(@PathVariable String idCompte) {
+		return serviceCompte.ListDebitCredit(idCompte);
     }
 
 

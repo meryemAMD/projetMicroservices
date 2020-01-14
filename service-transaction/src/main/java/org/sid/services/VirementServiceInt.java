@@ -11,7 +11,5 @@ public interface VirementServiceInt {
 	ValidationResponse valider(ValidationRequest validationRequest);
 
 	Boolean create(Operation operation, String idCompteSrc);
-	
-	boolean testTransaction();
 
 }

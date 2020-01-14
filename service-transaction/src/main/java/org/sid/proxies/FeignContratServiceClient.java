@@ -22,7 +22,7 @@ public interface FeignContratServiceClient {
 	@GetMapping(value = "/Abonnes/Entreprises/{domaine}")
 	public List<Abonne> findEntrepriseByDomaine(@PathVariable String domaine) ;
 	
-	@RequestMapping(value="/Offres/{idAbonne}/{montant}/{type}",method = RequestMethod.POST)
+	@RequestMapping(value="/Offres/validatePlafond/{idAbonne}/{montant}/{type}",method = RequestMethod.POST)
     public Boolean validatePlafond(@PathVariable String idAbonne , @PathVariable float montant , @PathVariable String type );
 	
 }

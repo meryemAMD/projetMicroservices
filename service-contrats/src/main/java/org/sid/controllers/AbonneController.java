@@ -42,8 +42,8 @@ public class AbonneController {
     }
 	
 	@GetMapping(value = "User/{idUser}")
-	public Abonne findByIdUser(@PathVariable String idUser) {
-		return abonneService.findByIdUser(idUser);
+	public String findByIdUser(@PathVariable String idUser) {
+		return abonneService.findByIdUser(idUser).getIdAbonne();
     }
 	
 	@GetMapping(value = "Entreprises/{domaine}")

@@ -15,5 +15,6 @@ public interface BO_Service {
 	public BO getBO(String id);
 	public List<BO> getBos();
 	public List<BO>getBosByidAgences(String idAgence);
+	public String FindIdBo_ByIdUser(String idUser);
 
 }

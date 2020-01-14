@@ -28,10 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/Prelevement/**").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/Comptes/**").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/Cartes/**").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/Offres/validatePlafond/**").permitAll();
 
-        //http.authorizeRequests().antMatchers("/Abonnes/**","/Cartes/**","/Comptes/**","/Contrats/**","/Offres/**",
-        		//"/Prelevement/**").hasAuthority("BO");
-        //http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().antMatchers("/Abonnes/**","/Cartes/**","/Comptes/**","/Contrats/**","/Offres/**",
+        		"/Prelevement/**").hasAuthority("BO");
+        http.authorizeRequests().anyRequest().authenticated();
        http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 

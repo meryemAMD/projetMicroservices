@@ -64,7 +64,11 @@ public class BoController {
     public void deleteAbonne(@PathVariable String idBo) {
 		boService.deleteBo(idBo);
     }
-	
+	//Ask Id Bo using Id User
+	@RequestMapping(method = RequestMethod.GET, value = "/byidUser/{idUser}")
+	public String findIdBo(@PathVariable String idUser){
+		return boService.FindIdBo_ByIdUser(idUser);
+	}
 
 	
 
